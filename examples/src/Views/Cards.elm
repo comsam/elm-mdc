@@ -18,26 +18,27 @@ view model =
     []
     [ h1 [] [ text "MDC Cards" ]
     , section
-        [ classList [ ("demo-typography--section", True)
-                    , ("mdc-typography", True)]]
+        [ class "demo-typography--section"
+        , class "mdc-typography"
+        ]
         [ card
-            [ classList [ ("demo-card", True) ] ]
+            [ class "demo-card" ]
             [ media
-                [ classList [ ("demo-card__16-9-media", True) ] ]
+                [ class "demo-card__16-9-media" ]
                 []
             , content [] [ text "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor." ]
             ]
 
         , card
-            [ classList [ ("demo-card", True)
-                        , ("demo-card--with-avatar", True)] ]
+            [ class "demo-card"
+            , class "demo-card--with-avatar" ]
             [ primary []
                 [ div [ class "demo-card__avatar" ] []
                 , title [] [ text "Title" ]
                 , subTitle [] [ text "Subhead" ]
                 ]
             , media
-                [ classList [ ("demo-card__16-9-media", True) ] ]
+                [ class "demo-card__16-9-media" ]
                 []
             , content [] [ text "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor." ]
             , actions [] [ actionButton [] [ text "Action 1" ]
@@ -46,15 +47,15 @@ view model =
             ]
 
         , card
-            [ classList [ ("demo-card", True)
-                        , ("demo-card--with-avatar", True)] ]
+            [ class "demo-card"
+            , class "demo-card--with-avatar" ]
             [ primary []
                 [ div [ class "demo-card__avatar" ] []
                 , title [] [ text "Title" ]
                 , subTitle [] [ text "Subhead" ]
                 ]
             , media
-                [ classList [ ("demo-card__16-9-media", True) ] ]
+                [ class "demo-card__16-9-media" ]
                 []
             , content [] [ text "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor." ]
             , actionsVertical [] [ actionButton [] [ text "Action 1" ]
@@ -63,9 +64,9 @@ view model =
             ]
 
         , card
-            [ classList [ ("demo-card", True)] ]
+            [ class "demo-card" ]
             [ media
-                [ classList [ ("demo-card__16-9-media", True) ] ]
+                [ class "demo-card__16-9-media" ]
                 []
             , primary []
                 [ titleLarge [] [ text "Title goes here" ]
@@ -77,7 +78,7 @@ view model =
             ]
 
         , card
-            [ classList [ ("demo-card", True)] ]
+            [ class "demo-card" ]
             [ primary []
                 [ titleLarge [] [ text "Title goes here" ]
                 , subTitle [] [ text "Subhead here" ]
@@ -89,8 +90,8 @@ view model =
             ]
 
         , cardDark
-            [ classList [ ("demo-card", True)
-                        , ("demo-card--bg-demo", True)] ]
+            [ class "demo-card"
+            , class "demo-card--bg-demo" ]
             [ primary []
                 [ titleLarge [] [ text "Title goes here" ]
                 , subTitle [] [ text "Subhead here" ]
@@ -101,10 +102,10 @@ view model =
             ]
 
         , card
-            [ classList [ ("demo-card", True)
-                        , ("demo-card--small", True)] ]
+            [ class "demo-card"
+            , class "demo-card--small" ]
             [ media
-                [ classList [ ("demo-card__16-9-media", True) ] ]
+                [ class "demo-card__16-9-media" ]
                 [ titleLarge [] [ text "Title" ]
                 ]
             , actions [] [ actionButton [] [ text "Action 1" ]
@@ -112,7 +113,7 @@ view model =
             ]
 
         , card
-            [ classList [ ("demo-card", True)] ]
+            [ class "demo-card" ]
             [ horizontal
                 []
                 [ primary []
@@ -130,7 +131,7 @@ view model =
             ]
 
         , card
-            [ classList [ ("demo-card", True)] ]
+            [ class "demo-card" ]
             [ horizontal
                 []
                 [ primary []
@@ -148,7 +149,7 @@ view model =
             ]
 
         , card
-            [ classList [ ("demo-card", True)] ]
+            [ class "demo-card" ]
             [ horizontal
                 []
                 [ primary []
@@ -166,7 +167,7 @@ view model =
             ]
 
         , card
-            [ classList [ ("demo-card", True)] ]
+            [ class "demo-card" ]
             [ horizontal
                 []
                 [ mediaItem_3x
