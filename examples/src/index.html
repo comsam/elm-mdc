@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material Design Components for Elm Exmaples</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500|Roboto+Mono|Roboto+Condensed:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="stylesheet" href="/dist/assets/css/material-components-web.css" />
+
+    <style>
+      .demo-card {
+        max-width: 21.875rem; /* 350sp */
+        margin-bottom: 48px;
+      }
+
+      @media(min-width: 768px) {
+        .demo-card {
+          margin-bottom: 24px;
+        }
+      }
+
+      .demo-card--with-avatar .mdc-card__primary {
+        position: relative;
+      }
+
+      .demo-card--with-avatar .demo-card__avatar {
+        position: absolute;
+        background: #bdbdbd;
+        height: 2.5rem; /* 40sp */
+        width: 2.5rem; /* 40sp */
+        border-radius: 50%;
+      }
+
+      .demo-card--with-avatar .mdc-card__title,
+      .demo-card--with-avatar .mdc-card__subtitle {
+        margin-left: 56px;
+      }
+
+      .demo-card__16-9-media {
+        background-image: url("/assets/images/16-9.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 12.313rem; /* 197sp, for 16:9 ratio with 350sp demo card width */
+      }
+
+     /* Card 6 */
+     .demo-card--bg-demo {
+       height: 21.875rem; /* 350sp */
+       background-image: url("/assets/images/1-1.jpg");
+       background-size: cover;
+       background-repeat: no-repeat;
+     }
+
+     .demo-card--bg-demo .mdc-card__primary,
+     .demo-card--bg-demo .mdc-card__actions {
+       background: rgba(0, 0, 0, .4);
+     }
+
+     /* Card 7 */
+     .demo-card--small {
+       max-width: 10.938rem; /* 175sp */
+     }
+
+     .demo-card--small .mdc-card__media {
+       background-image: url("/assets/images/1-1.jpg");
+       background-size: cover;
+       background-repeat: no-repeat;
+       height: 10.938rem; /* 175sp, for 1:1 ratio with 175sp demo card width */
+     }
+    </style>
+  </head>
+  <body>
+    <div id="main">Loading...</div>
+    <script src="/app.js"></script>
+  </body>
+</html>

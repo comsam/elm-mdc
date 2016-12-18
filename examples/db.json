@@ -1,0 +1,203 @@
+{
+    "communications": [
+        {
+            "id": "1",
+            "name": "Welcome message",
+            "hasSMS" : false,
+            "hasEmail" : true,
+            "numberOfTemplates" : 2,
+            "today" : {
+                "numberOfSends" : 203,
+                "numberOfOpens" : 149,
+                "numberOfClicks" : 30,
+                "numberOfReplies" : 0
+            },
+            "last7days" : {
+                "numberOfSends" : 1002,
+                "numberOfOpens" : 749,
+                "numberOfClicks" : 120,
+                "numberOfReplies" : 0
+            }
+        },
+        {
+            "id": "2",
+            "name": "Something has happened",
+            "hasSMS" : true,
+            "hasEmail" : true,
+            "numberOfTemplates" : 4,
+            "today" : {
+                "numberOfSends" : 203,
+                "numberOfOpens" : 149,
+                "numberOfClicks" : 30,
+                "numberOfReplies" : 0
+            },
+            "last7days" : {
+                "numberOfSends" : 1002,
+                "numberOfOpens" : 749,
+                "numberOfClicks" : 120,
+                "numberOfReplies" : 0
+            }
+        },
+        {
+            "id": "3",
+            "name": "You should do something",
+            "hasSMS" : true,
+            "hasEmail" : false,
+            "numberOfTemplates" : 1,
+            "today" : {
+                "numberOfSends" : 203,
+                "numberOfOpens" : 149,
+                "numberOfClicks" : 30,
+                "numberOfReplies" : 0
+            },
+            "last7days" : {
+                "numberOfSends" : 1002,
+                "numberOfOpens" : 749,
+                "numberOfClicks" : 120,
+                "numberOfReplies" : 10
+            }
+        }
+    ],
+    "templates" : [
+        {
+            "id": "100001",
+            "communicationId": "1",
+            "name": "For under 30",
+            "templateType": "email",
+            "published": true,
+            "ast": "",
+            "today" : {
+                "numberOfSends" : 203,
+                "numberOfOpens" : 149,
+                "numberOfClicks" : 30,
+                "numberOfReplies" : 0
+            },
+            "last7days" : {
+                "numberOfSends" : 1002,
+                "numberOfOpens" : 749,
+                "numberOfClicks" : 120,
+                "numberOfReplies" : 10
+            }
+        },
+        {
+            "id": "100002",
+            "communicationId": "1",
+            "name": "For over 30",
+            "templateType": "email",
+            "published": false,
+            "ast": "",
+            "today" : {
+                "numberOfSends" : 203,
+                "numberOfOpens" : 149,
+                "numberOfClicks" : 30,
+                "numberOfReplies" : 0
+            },
+            "last7days" : {
+                "numberOfSends" : 1002,
+                "numberOfOpens" : 749,
+                "numberOfClicks" : 120,
+                "numberOfReplies" : 10
+            }
+        },
+        {
+            "id": "200001",
+            "communicationId": "2",
+            "name": "For under 30",
+            "templateType": "email",
+            "published": true,
+            "ast": "",
+            "today" : {
+                "numberOfSends" : 203,
+                "numberOfOpens" : 149,
+                "numberOfClicks" : 30,
+                "numberOfReplies" : 0
+            },
+            "last7days" : {
+                "numberOfSends" : 1002,
+                "numberOfOpens" : 749,
+                "numberOfClicks" : 120,
+                "numberOfReplies" : 10
+            }
+        },
+        {
+            "id": "200002",
+            "communicationId": "2",
+            "name": "For over 30",
+            "templateType": "email",
+            "published": true,
+            "ast": "",
+            "today" : {
+                "numberOfSends" : 203,
+                "numberOfOpens" : 149,
+                "numberOfClicks" : 30,
+                "numberOfReplies" : 0
+            },
+            "last7days" : {
+                "numberOfSends" : 1002,
+                "numberOfOpens" : 749,
+                "numberOfClicks" : 120,
+                "numberOfReplies" : 10
+            }
+        },
+        {
+            "id": "200003",
+            "communicationId": "2",
+            "name": "For all people that are under 30 years old",
+            "templateType": "sms",
+            "published": false,
+            "ast": "",
+            "today" : {
+                "numberOfSends" : 203,
+                "numberOfOpens" : 149,
+                "numberOfClicks" : 30,
+                "numberOfReplies" : 0
+            },
+            "last7days" : {
+                "numberOfSends" : 1002,
+                "numberOfOpens" : 749,
+                "numberOfClicks" : 120,
+                "numberOfReplies" : 10
+            }
+        },
+        {
+            "id": "200004",
+            "communicationId": "2",
+            "name": "For over 30",
+            "templateType": "sms",
+            "published": false,
+            "ast": "",
+            "today" : {
+                "numberOfSends" : 203,
+                "numberOfOpens" : 149,
+                "numberOfClicks" : 30,
+                "numberOfReplies" : 0
+            },
+            "last7days" : {
+                "numberOfSends" : 1002,
+                "numberOfOpens" : 749,
+                "numberOfClicks" : 120,
+                "numberOfReplies" : 10
+            }
+        },
+        {
+            "id": "300001",
+            "communicationId": "3",
+            "name": "Important update",
+            "templateType": "sms",
+            "published": true,
+            "ast": "",
+            "today" : {
+                "numberOfSends" : 203,
+                "numberOfOpens" : 149,
+                "numberOfClicks" : 30,
+                "numberOfReplies" : 0
+            },
+            "last7days" : {
+                "numberOfSends" : 1002,
+                "numberOfOpens" : 749,
+                "numberOfClicks" : 120,
+                "numberOfReplies" : 10
+            }
+        }
+    ]
+}
