@@ -7,6 +7,7 @@ import UrlParser exposing (..)
 type Route
   = HomeRoute
   | CardsRoute
+  | ElevationsRoute
   | NotFoundRoute
 
 
@@ -17,6 +18,7 @@ matchers =
     oneOf
         [ map HomeRoute (s "")
         , map CardsRoute (s "cards")
+        , map ElevationsRoute (s "elevations")
         ]
 
 
@@ -49,8 +51,9 @@ reverse route =
     routeToString route =
       flip (++) "/" <|
         case route of
-            HomeRoute     -> ""
-            CardsRoute    -> "cards"
-            NotFoundRoute -> "404"
+            HomeRoute          -> ""
+            CardsRoute         -> "cards"
+            ElevationsRoute    -> "elevations"
+            NotFoundRoute      -> "404"
   in
       "#" ++ routeToString route

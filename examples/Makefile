@@ -4,10 +4,10 @@ setup:
 	npm install -g foreman
 
 run: copy_assets
-	nf start
+	npm run dev
 
 copy_assets:
 	rm -rf ./dist
 	mkdir ./dist
-	cp -r assets ./dist/
+	cp -r ./assets ./dist/
 	cp -r ../assets ./dist/

@@ -5,7 +5,6 @@ import Messages exposing (Msg(..))
 import Model exposing (Model)
 import Routing exposing (Route(..), routeFromResult, reverse)
 
-
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
   case msg of
@@ -14,6 +13,9 @@ update msg model =
 
       NavigateTo route ->
         ( model, Navigation.newUrl <| reverse route )
+
+      OnHover mdc ->
+        ( { model | mdc = mdc }, Cmd.none )
 
       _ ->
         ( model, Cmd.none )

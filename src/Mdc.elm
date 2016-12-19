@@ -1,6 +1,18 @@
 module Mdc
   exposing
-    ( Card
+    ( Model
+    , model
     )
 
-import Mdc.Card as Card
+
+import Dict exposing (..)
+
+
+type alias Model =
+  { hover : Dict String Bool
+  }
+
+
+model =
+  { hover = Dict.empty
+  }

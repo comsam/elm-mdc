@@ -9,6 +9,7 @@ import Model exposing (Model)
 import Routing exposing (Route(..), reverse)
 
 import Views.Cards exposing (view)
+import Views.Elevations exposing (view)
 
 import Routing exposing (reverse)
 
@@ -22,6 +23,7 @@ viewLazy ({route} as model) =
   case route of
       HomeRoute            -> homePage
       CardsRoute           -> Views.Cards.view model
+      ElevationsRoute      -> Views.Elevations.view model
       _                    -> notFoundPage
 
 
