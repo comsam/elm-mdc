@@ -27,25 +27,20 @@ import Html.Events exposing (onClick)
 
 card : List (Attribute msg) -> List (Html msg) -> Html msg
 card attributes children =
-  card_ False attributes children
+  let
+    attr =
+      [ class "mdc-card" ] ++ attributes
+  in
+      div attr children
 
 
 cardDark : List (Attribute msg) -> List (Html msg) -> Html msg
 cardDark attributes children =
-  card_ True attributes children
-
-
-card_ : Bool -> List (Attribute msg) -> List (Html msg) -> Html msg
-card_ darkTheme attributes children =
   let
     attr =
-      [ classList
-          [ ("mdc-card", True)
-          , ("mdc-card--theme-dark", darkTheme)
-          ]
-      ] ++ attributes
+      [ class "mdc-card--theme-dark" ] ++ attributes
   in
-      div attr children
+      card attr children
 
 
 primary : List (Attribute msg) -> List (Html msg) -> Html msg
@@ -115,11 +110,9 @@ actionsVertical : List (Attribute msg) -> List (Html msg) -> Html msg
 actionsVertical attributes children =
   let
     attr =
-      [ class "mdc-card__actions"
-      , class "mdc-card__actions--vertical"
-      ] ++ attributes
+      [ class "mdc-card__actions--vertical" ] ++ attributes
   in
-      section attr children
+      actions attr children
 
 
 actionButton : List (Attribute msg) -> List (Html msg) -> Html msg
@@ -138,13 +131,9 @@ actionButtonDark : List (Attribute msg) -> List (Html msg) -> Html msg
 actionButtonDark attributes children =
   let
     attr =
-      [ class "mdc-button"
-      , class "mdc-button--compact"
-      , class "mdc-button--theme-dark"
-      , class "mdc-card__action"
-      ] ++ attributes
+      [ class "mdc-button--theme-dark" ] ++ attributes
   in
-      button attr children
+      actionButton attr children
 
 
 media : List (Attribute msg) -> List (Html msg) -> Html msg
