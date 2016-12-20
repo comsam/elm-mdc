@@ -40,11 +40,11 @@ homePage =
   [] [ h1 [] [ text "Material Design Components" ]
      , br [] []
      , br [] []
-     --, button [ onClick <| NavigateTo ButtonsRoute ] [ text "Buttons" ]
-     --, br [] []
-     --, button [ onClick <| NavigateTo CardsRoute ] [ text "Cards" ]
-     --, br [] []
-     --, button [ onClick <| NavigateTo ElevationsRoute ] [ text "Elevations" ]
+     , button [ onClick <| NavigateTo ButtonsRoute ] [ text "Buttons" ]
+     , br [] []
+     , button [ onClick <| NavigateTo CardsRoute ] [ text "Cards" ]
+     , br [] []
+     , button [ onClick <| NavigateTo ElevationsRoute ] [ text "Elevations" ]
      ]
 
 {-| Render the 404 Page.

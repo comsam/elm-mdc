@@ -17,7 +17,7 @@ import Mdc.Html.Events exposing (..)
 
 view : Model -> Html Msg
 view model =
-  main_
+  Html.main_
     []
     [ div
         []

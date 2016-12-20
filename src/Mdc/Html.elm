@@ -138,28 +138,28 @@ section : ComponentSignature m
 section = styled Html.section
 
 nav : ComponentSignature m
-nav  = styled Html.nav
+nav = styled Html.nav
 
 article : ComponentSignature m
-article  = styled Html.article
+article = styled Html.article
 
 aside : ComponentSignature m
-aside  = styled Html.aside
+aside = styled Html.aside
 
 header : ComponentSignature m
-header  = styled Html.header
+header = styled Html.header
 
 footer : ComponentSignature m
-footer  = styled Html.footer
+footer = styled Html.footer
 
 address : ComponentSignature m
-address  = styled Html.address
+address = styled Html.address
 
 main_ : ComponentSignature m
 main_ = styled Html.main_
 
 body : ComponentSignature m
-body  = styled Html.body
+body = styled Html.body
 
 
 
