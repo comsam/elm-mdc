@@ -5,8 +5,7 @@ import Routing exposing (Route)
 import Mdc exposing (Model)
 
 type Msg
-  = UrlUpdate Route
-  | NavigateTo Route
+  = NavigateTo Route
   | OpenClicked
   | CloseClicked
 

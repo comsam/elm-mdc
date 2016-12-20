@@ -4,29 +4,30 @@ module Mdc.Enhance
     )
 
 import Dict exposing (..)
-import Html exposing (..)
-import Html.Attributes exposing (href, class, classList, style, src)
 import Html.Events exposing (onMouseEnter, onMouseLeave)
 
 import Mdc exposing (Model)
+import Mdc.Html exposing (..)
+import Mdc.Html.Attributes exposing (..)
 
-onHover : String -> List (Attribute msg) -> List (Attribute msg) -> Model -> (Model -> msg) -> List (Attribute msg)
+
+onHover : String -> List (Property msg) -> List (Property msg) -> Model -> (Model -> msg) -> Property msg
 onHover id normal hover model msg =
   let
     attr =
-      [ onMouseEnter <| setHover id model msg True
-      , onMouseLeave <| setHover id model msg False
+      [ Attribute << onMouseEnter <| setHover id model msg True
+      , Attribute << onMouseLeave <| setHover id model msg False
       ]
   in
       case Dict.get id model.hover of
           Nothing ->
-            attr ++ normal
+            Many <| (attr ++ normal)
           Just hovered ->
             case hovered of
                 True ->
-                  attr ++ hover
+                  Many <| (attr ++ hover)
                 False ->
-                  attr ++ normal
+                  Many <| (attr ++ normal)
 
 
 setHover : String -> Model -> (Model -> msg) -> Bool -> msg

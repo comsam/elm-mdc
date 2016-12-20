@@ -1,13 +1,17 @@
 module Views.Cards exposing (view)
 
-import Html exposing (..)
-import Html.Attributes exposing (href, class, classList, style, src)
-import Html.Events
+import Html exposing (Html)
 
 import Messages exposing (Msg, Msg(..))
 import Model exposing (Model)
+import Routing exposing (Route(..), reverse)
 
+import Mdc.Button exposing (button)
 import Mdc.Card exposing (..)
+import Mdc.Html exposing (div, h1, h2, text, a, br, section, fieldset, legend)
+import Mdc.Html.Attributes exposing (..)
+import Mdc.Html.Events exposing (..)
+
 
 -- VIEW
 
@@ -17,6 +21,13 @@ view model =
   div
     []
     [ h1 [] [ text "MDC Cards" ]
+    , a [ href <| reverse HomeRoute ] [ text "Back" ]
+    , text " - "
+    , button [ onClick <| NavigateTo HomeRoute ] [ text "Back" ]
+    , text " - "
+    , a [ href "https://material-components-web.appspot.com/card.html", target "_black" ] [ text "Mdc demo" ]
+    , br [] []
+    , br [] []
     , section
         [ class "demo-typography--section"
         , class "mdc-typography"
@@ -58,9 +69,10 @@ view model =
                 [ class "demo-card__16-9-media" ]
                 []
             , content [] [ text "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor." ]
-            , actionsVertical [] [ actionButton [] [ text "Action 1" ]
-                         , actionButton [] [ text "Action 2" ]
-                         ]
+            , actions [ vertical ]
+              [ actionButton [] [ text "Action 1" ]
+              , actionButton [] [ text "Action 2" ]
+              ]
             ]
 
         , card
@@ -69,7 +81,7 @@ view model =
                 [ class "demo-card__16-9-media" ]
                 []
             , primary []
-                [ titleLarge [] [ text "Title goes here" ]
+                [ title [ largeTitle ] [ text "Title goes here" ]
                 , subTitle [] [ text "Subhead here" ]
                 ]
             , actions [] [ actionButton [] [ text "Action 1" ]
@@ -80,7 +92,7 @@ view model =
         , card
             [ class "demo-card" ]
             [ primary []
-                [ titleLarge [] [ text "Title goes here" ]
+                [ title [ largeTitle ] [ text "Title goes here" ]
                 , subTitle [] [ text "Subhead here" ]
                 ]
             , content [] [ text "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." ]
@@ -89,15 +101,16 @@ view model =
                          ]
             ]
 
-        , cardDark
+        , card
             [ class "demo-card"
-            , class "demo-card--bg-demo" ]
+            , class "demo-card--bg-demo"
+            , darkCard ]
             [ primary []
-                [ titleLarge [] [ text "Title goes here" ]
+                [ title [ largeTitle ] [ text "Title goes here" ]
                 , subTitle [] [ text "Subhead here" ]
                 ]
-            , actions [] [ actionButtonDark [] [ text "Action 1" ]
-                         , actionButtonDark [] [ text "Action 2" ]
+            , actions [] [ actionButton [ darkButton ] [ text "Action 1" ]
+                         , actionButton [ darkButton ] [ text "Action 2" ]
                          ]
             ]
 
@@ -106,7 +119,7 @@ view model =
             , class "demo-card--small" ]
             [ media
                 [ class "demo-card__16-9-media" ]
-                [ titleLarge [] [ text "Title" ]
+                [ title [ largeTitle ] [ text "Title" ]
                 ]
             , actions [] [ actionButton [] [ text "Action 1" ]
                          ]
@@ -117,7 +130,7 @@ view model =
             [ horizontal
                 []
                 [ primary []
-                    [ titleLarge [] [ text "Title here" ]
+                    [ title [ largeTitle ] [ text "Title here" ]
                     , subTitle [] [ text "Subtitle here" ]
                     ]
                 , mediaItem
@@ -135,11 +148,12 @@ view model =
             [ horizontal
                 []
                 [ primary []
-                    [ titleLarge [] [ text "Title here" ]
+                    [ title [ largeTitle ] [ text "Title here" ]
                     , subTitle [] [ text "Subtitle here" ]
                     ]
-                , mediaItem_1dot5x
+                , mediaItem
                     [ src "/assets/images/1-1.jpg"
+                    , size1dot5x
                     ]
                     [ ]
                 ]
@@ -153,11 +167,12 @@ view model =
             [ horizontal
                 []
                 [ primary []
-                    [ titleLarge [] [ text "Title here" ]
+                    [ title [ largeTitle ] [ text "Title here" ]
                     , subTitle [] [ text "Subtitle here" ]
                     ]
-                , mediaItem_2x
+                , mediaItem
                     [ src "/assets/images/1-1.jpg"
+                    , size2x
                     ]
                     [ ]
                 ]
@@ -170,13 +185,15 @@ view model =
             [ class "demo-card" ]
             [ horizontal
                 []
-                [ mediaItem_3x
+                [ mediaItem
                     [ src "/assets/images/1-1.jpg"
+                    , size3x
                     ]
                     [ ]
-                , actionsVertical [] [ actionButton [] [ text "A1" ]
-                                     , actionButton [] [ text "A2" ]
-                                     ]
+                , actions [ vertical ]
+                  [ actionButton [] [ text "A1" ]
+                  , actionButton [] [ text "A2" ]
+                  ]
                 ]
             ]
 

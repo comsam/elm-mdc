@@ -1,12 +1,13 @@
 module Routing exposing (..)
 
-import Navigation
 import UrlParser exposing (..)
+import Navigation exposing (Location)
 
 
 type Route
   = HomeRoute
   | CardsRoute
+  | ButtonsRoute
   | ElevationsRoute
   | NotFoundRoute
 
@@ -15,16 +16,17 @@ type Route
 -}
 matchers : Parser (Route -> a) a
 matchers =
-    oneOf
-        [ map HomeRoute (s "")
-        , map CardsRoute (s "cards")
-        , map ElevationsRoute (s "elevations")
-        ]
+  oneOf
+  [ map HomeRoute (s "")
+  , map CardsRoute (s "cards")
+  , map ButtonsRoute (s "buttons")
+  , map ElevationsRoute (s "elevations")
+  ]
 
 
 {-| Attempt to parse a Locaton's Hash into a Route.
 -}
-routeParser : Navigation.Location -> Route
+routeParser : Location -> Route
 routeParser location =
   let
     newLocation =
@@ -33,14 +35,9 @@ routeParser location =
       else
         location
   in
-    newLocation |> parseHash matchers |> Maybe.withDefault NotFoundRoute
-
-
-{-| Pull a Route out of the parsed URL, defaulting to the `NotFoundRoute`.
--}
-routeFromResult : Result String Route -> Route
-routeFromResult =
-    Result.withDefault NotFoundRoute
+      newLocation
+        |> parseHash matchers
+        |> Maybe.withDefault NotFoundRoute
 
 
 {-| Turn a Route into the URL the Route represents.
@@ -53,6 +50,7 @@ reverse route =
         case route of
             HomeRoute          -> ""
             CardsRoute         -> "cards"
+            ButtonsRoute       -> "buttons"
             ElevationsRoute    -> "elevations"
             NotFoundRoute      -> "404"
   in

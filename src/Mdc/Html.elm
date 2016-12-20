@@ -1,45 +1,29 @@
 module Mdc.Html
   exposing
-  ( Property
-  , Property (..)
-  , div
-  , span
-  , section
-  , figure
-  , figcaption
-  , code
-  , img
-  , p
-  , h1
-  , h2
-  , text
-  , button
-
-  , nop
-  , when
-  , attribute
-  , id
-  , class
-  , classList
-  , style
-  , src
+  (
+  {-, Html, Attribute-}
+   text{-, node, map-}
+  , h1, h2, h3, h4, h5, h6
+  , div, p, hr, blockquote
+  , span, a, code{-, em, strong, i, b, u, sub, sup-}, br
+  {-, ol, ul, li, dl, dt, dd-}
+  , img{-, iframe, canvas, math-}
+  {-, form, input, textarea-}, button{-, select, option-}
+  , section, nav, article, aside, header, footer, address, main_, body
+  , figure, figcaption
+  , fieldset, legend{-, label, datalist, optgroup, keygen, output, progress, meter-}
+  {-, audio, video, source, track-}
+  {-, embed, object, param-}
+  {-, ins, del-}
+  {-, small, cite, dfn, abbr, time, var, samp, kbd, s, q-}
+  {-, mark, ruby, rt, rp, bdi, bdo, wbr-}
+  {-, details, summary, menuitem, menu)-}
   )
 
 
-import String
+--import String
 import Html exposing (Html, Attribute)
-import Html.Attributes
-
-
-type Property m
-  = Attribute (Html.Attribute m)
-  | Many (List (Property m))
-  | None
-
-
-attribute : Html.Attribute m -> Property m
-attribute =
-  Attribute
+import Mdc.Html.Attributes exposing (..)
 
 
 styled : (List (Attribute m) -> a) -> List (Property m) -> a
@@ -47,11 +31,10 @@ styled ctor props =
   let
     attributes =
       props
-        |> List.foldl collect1 []
+        |> List.foldr collect1 []
         |> List.filterMap onlyAttributes
   in
       ctor attributes
-
 
 
 collect1 : Property m -> List (Property m) -> List (Property m)
@@ -61,7 +44,7 @@ collect1 option acc =
         option :: acc
 
       Many options ->
-        List.foldl collect1 acc options
+        List.foldr collect1 acc options
 
       None ->
         acc
@@ -76,52 +59,7 @@ onlyAttributes property =
         Nothing
 
 
-nop : Property m
-nop =
-  None
-
-
-when : Property m -> Bool -> Property m
-when prop guard =
-    if guard then
-        prop
-    else
-        nop
-
-
-div : List (Property m) -> List (Html m) -> Html m
-div =
-  styled Html.div
-
-
-span : List (Property m) -> List (Html m) -> Html m
-span =
-  styled Html.span
-
-
-section : List (Property m) -> List (Html m) -> Html m
-section =
-  styled Html.section
-
-
-img : List (Property m) -> List (Html m) -> Html m
-img  =
-  styled Html.img-- properties <| children
-
-
-figure : List (Property m) -> List (Html m) -> Html m
-figure =
-  styled Html.figure
-
-
-figcaption : List (Property m) -> List (Html m) -> Html m
-figcaption =
-  styled Html.figcaption
-
-
-code : List (Property m) -> List (Html m) -> Html m
-code =
-  styled Html.code
+-- HTML Components
 
 
 text : String -> Html m
@@ -129,49 +67,114 @@ text =
   Html.text
 
 
-p : List (Property m) -> List (Html m) -> Html m
-p =
-  styled Html.p
+type alias ComponentSignature m =
+  List (Property m) -> List (Html m) -> Html m
 
 
-h1 : List (Property m) -> List (Html m) -> Html m
-h1 =
-  styled Html.h1
+h1 : ComponentSignature m
+h1 = styled Html.h1
+
+h2 : ComponentSignature m
+h2 = styled Html.h2
+
+h3 : ComponentSignature m
+h3 = styled Html.h3
+
+h4 : ComponentSignature m
+h4 = styled Html.h4
+
+h5 : ComponentSignature m
+h5 = styled Html.h5
+
+h6 : ComponentSignature m
+h6 = styled Html.h6
 
 
-h2 : List (Property m) -> List (Html m) -> Html m
-h2 =
-  styled Html.h2
 
 
-button : List (Property m) -> List (Html m) -> Html m
-button =
-  styled Html.button
+div : ComponentSignature m
+div = styled Html.div
+
+p : ComponentSignature m
+p = styled Html.p
+
+hr : ComponentSignature m
+hr = styled Html.hr
+
+blockquote : ComponentSignature m
+blockquote = styled Html.blockquote
 
 
--- Attributes
 
 
-id : String -> Property m
-id =
-  Attribute << Html.Attributes.id
+span : ComponentSignature m
+span = styled Html.span
+
+a : ComponentSignature m
+a = styled Html.a
+
+code : ComponentSignature m
+code = styled Html.code
+
+br : ComponentSignature m
+br = styled Html.br
 
 
-class : String -> Property m
-class =
-  Attribute << Html.Attributes.class
 
 
-style : List (String, String) -> Property m
-style =
-  Attribute << Html.Attributes.style
+img : ComponentSignature m
+img = styled Html.img
 
 
-classList : List (String, Bool) -> Property m
-classList =
-  Attribute << Html.Attributes.classList
 
 
-src : String -> Property m
-src =
-  Attribute << Html.Attributes.src
+button : ComponentSignature m
+button = styled Html.button
+
+
+
+
+section : ComponentSignature m
+section = styled Html.section
+
+nav : ComponentSignature m
+nav  = styled Html.nav
+
+article : ComponentSignature m
+article  = styled Html.article
+
+aside : ComponentSignature m
+aside  = styled Html.aside
+
+header : ComponentSignature m
+header  = styled Html.header
+
+footer : ComponentSignature m
+footer  = styled Html.footer
+
+address : ComponentSignature m
+address  = styled Html.address
+
+main_ : ComponentSignature m
+main_ = styled Html.main_
+
+body : ComponentSignature m
+body  = styled Html.body
+
+
+
+
+figure : ComponentSignature m
+figure = styled Html.figure
+
+figcaption : ComponentSignature m
+figcaption = styled Html.figcaption
+
+
+
+
+fieldset : ComponentSignature m
+fieldset = styled Html.fieldset
+
+legend : ComponentSignature m
+legend = styled Html.legend

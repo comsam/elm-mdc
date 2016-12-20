@@ -1,31 +1,35 @@
 module Mdc.Card
   exposing
     ( card
-    , cardDark
     , primary
     , title
-    , titleLarge
     , subTitle
     , content
     , horizontal
     , actions
-    , actionsVertical
     , actionButton
-    , actionButtonDark
     , media
     , mediaItem
-    , mediaItem_1dot5x
-    , mediaItem_2x
-    , mediaItem_3x
+
+    , largeTitle
+    , vertical
+    , darkCard
+    , darkButton
+    , size1dot5x
+    , size2x
+    , size3x
     )
 
 
-import Html exposing (..)
-import Html.Attributes exposing (href, class, classList, style, src)
-import Html.Events exposing (onClick)
+import Html exposing (Html)
 
 
-card : List (Attribute msg) -> List (Html msg) -> Html msg
+import Mdc.Html exposing (div, section, img, h1, h2)
+import Mdc.Html.Attributes exposing (..)
+import Mdc.Button exposing (button, compact)
+
+
+card : List (Property msg) -> List (Html msg) -> Html msg
 card attributes children =
   let
     attr =
@@ -34,16 +38,7 @@ card attributes children =
       div attr children
 
 
-cardDark : List (Attribute msg) -> List (Html msg) -> Html msg
-cardDark attributes children =
-  let
-    attr =
-      [ class "mdc-card--theme-dark" ] ++ attributes
-  in
-      card attr children
-
-
-primary : List (Attribute msg) -> List (Html msg) -> Html msg
+primary : List (Property msg) -> List (Html msg) -> Html msg
 primary attributes children =
   let
     attr =
@@ -52,7 +47,7 @@ primary attributes children =
       section attr children
 
 
-title : List (Attribute msg) -> List (Html msg) -> Html msg
+title : List (Property msg) -> List (Html msg) -> Html msg
 title attributes children =
   let
     attr =
@@ -61,16 +56,7 @@ title attributes children =
       h1 attr children
 
 
-titleLarge : List (Attribute msg) -> List (Html msg) -> Html msg
-titleLarge attributes children =
-  let
-    attr =
-      [ class "mdc-card__title--large" ] ++ attributes
-  in
-      title attr children
-
-
-subTitle : List (Attribute msg) -> List (Html msg) -> Html msg
+subTitle : List (Property msg) -> List (Html msg) -> Html msg
 subTitle attributes children =
   let
     attr =
@@ -79,7 +65,7 @@ subTitle attributes children =
       h2 attr children
 
 
-content : List (Attribute msg) -> List (Html msg) -> Html msg
+content : List (Property msg) -> List (Html msg) -> Html msg
 content attributes children =
   let
     attr =
@@ -88,7 +74,7 @@ content attributes children =
       section attr children
 
 
-horizontal : List (Attribute msg) -> List (Html msg) -> Html msg
+horizontal : List (Property msg) -> List (Html msg) -> Html msg
 horizontal attributes children =
   let
     attr =
@@ -97,7 +83,7 @@ horizontal attributes children =
       div attr children
 
 
-actions : List (Attribute msg) -> List (Html msg) -> Html msg
+actions : List (Property msg) -> List (Html msg) -> Html msg
 actions attributes children =
   let
     attr =
@@ -106,37 +92,12 @@ actions attributes children =
       section attr children
 
 
-actionsVertical : List (Attribute msg) -> List (Html msg) -> Html msg
-actionsVertical attributes children =
-  let
-    attr =
-      [ class "mdc-card__actions--vertical" ] ++ attributes
-  in
-      actions attr children
-
-
-actionButton : List (Attribute msg) -> List (Html msg) -> Html msg
+actionButton : List (Property msg) -> List (Html msg) -> Html msg
 actionButton attributes children =
-  let
-    attr =
-      [ class "mdc-button"
-      , class "mdc-button--compact"
-      , class "mdc-card__action"
-      ] ++ attributes
-  in
-      button attr children
+  Mdc.Button.button [ compact, class "mdc-card__action" ] children
 
 
-actionButtonDark : List (Attribute msg) -> List (Html msg) -> Html msg
-actionButtonDark attributes children =
-  let
-    attr =
-      [ class "mdc-button--theme-dark" ] ++ attributes
-  in
-      actionButton attr children
-
-
-media : List (Attribute msg) -> List (Html msg) -> Html msg
+media : List (Property msg) -> List (Html msg) -> Html msg
 media attributes children =
   let
     attr =
@@ -145,15 +106,7 @@ media attributes children =
       section attr children
 
 
-type MediaItemType
-  = X1
-  | X1dot5
-  | X2
-  | X3
-  | Nop
-
-
-mediaItem : List (Attribute msg) -> List (Html msg) -> Html msg
+mediaItem : List (Property msg) -> List (Html msg) -> Html msg
 mediaItem attributes children  =
   let
     attr =
@@ -162,16 +115,37 @@ mediaItem attributes children  =
       img attr children
 
 
-mediaItem_1dot5x : List (Attribute msg) -> List (Html msg) -> Html msg
-mediaItem_1dot5x attributes children =
-  mediaItem ([ class "mdc-card__media-item--1dot5x" ] ++ attributes) children
+
+largeTitle : Property msg
+largeTitle =
+  class "mdc-card__title--large"
 
 
-mediaItem_2x : List (Attribute msg) -> List (Html msg) -> Html msg
-mediaItem_2x attributes children =
-  mediaItem ([ class "mdc-card__media-item--2x" ] ++ attributes) children
+vertical : Property msg
+vertical =
+  class "mdc-card__actions--vertical"
 
 
-mediaItem_3x : List (Attribute msg) -> List (Html msg) -> Html msg
-mediaItem_3x attributes children =
-  mediaItem ([ class "mdc-card__media-item--3x" ] ++ attributes) children
+darkCard : Property msg
+darkCard =
+  class "mdc-card--theme-dark"
+
+
+darkButton : Property msg
+darkButton =
+  class "mdc-button--theme-dark"
+
+
+size1dot5x : Property msg
+size1dot5x =
+  class "mdc-card__media-item--1dot5x"
+
+
+size2x : Property msg
+size2x =
+  class "mdc-card__media-item--2x"
+
+
+size3x : Property msg
+size3x =
+  class "mdc-card__media-item--3x"

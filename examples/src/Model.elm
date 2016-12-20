@@ -1,7 +1,7 @@
 module Model exposing (..)
 
 
-import Routing exposing (Route)
+import Routing exposing (Route, Route(HomeRoute))
 import Mdc exposing (Model, model)
 
 type alias Model =
@@ -10,8 +10,8 @@ type alias Model =
   }
 
 
-initialModel : Route -> Model
-initialModel route =
-  { route = route
+initialModel : Model
+initialModel =
+  { route = HomeRoute
   , mdc = Mdc.model
   }

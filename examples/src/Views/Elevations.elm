@@ -1,14 +1,18 @@
 module Views.Elevations exposing (view)
 
-import Html exposing (..)
-import Html.Attributes exposing (id, href, class, classList, style, src)
-import Html.Events
+import Html exposing (Html)
 
 import Messages exposing (Msg, Msg(..))
 import Model exposing (Model)
+import Routing exposing (Route(..), reverse)
 
+import Mdc.Button exposing (button)
 import Mdc.Elevation exposing (..)
 import Mdc.Enhance exposing (onHover)
+import Mdc.Html exposing (div, p, h1, h2, text, a, br, section, fieldset, legend, code, figure, figcaption)
+import Mdc.Html.Attributes exposing (..)
+import Mdc.Html.Events exposing (..)
+
 
 -- VIEW
 
@@ -18,6 +22,13 @@ view model =
   div
     []
     [ h1 [] [ text "MDC Elevations" ]
+    , a [ href <| reverse HomeRoute ] [ text "Back" ]
+    , text " - "
+    , button [ onClick <| NavigateTo HomeRoute ] [ text "Back" ]
+    , text " - "
+    , a [ href "https://material-components-web.appspot.com/elevation.html", target "_black" ] [ text "Mdc demo" ]
+    , br [] []
+    , br [] []
     , section
         [ class "demo-surfaces"
         , class "mdc-typography"
@@ -52,9 +63,10 @@ view model =
     , section
         []
         [ div
-            ([ id "hover-el"
-             , class "mdc-elevation-transition"
-            ] ++ (onHover "hover-el" [ e2 ] [ e6 ] model.mdc OnHover))
+            [ id "hover-el"
+            , class "mdc-elevation-transition"
+            , onHover "hover-el" [ e2 ] [ e6 ] model.mdc OnHover
+            ]
             [ p [] [ text "Hover over or tap me for a transition" ]
             ]
         ]
@@ -62,7 +74,7 @@ view model =
     ]
 
 
-fig : Attribute msg -> String -> Html msg
+fig : Property msg -> String -> Html msg
 fig el z =
   figure
     [ class "demo-surface"
