@@ -1,6 +1,7 @@
 module Mdc.Enhance
   exposing
     ( onHover
+    , isIcon
     )
 
 import Dict exposing (..)
@@ -9,6 +10,7 @@ import Html.Events exposing (onMouseEnter, onMouseLeave)
 import Mdc exposing (Model)
 import Mdc.Html exposing (..)
 import Mdc.Html.Attributes exposing (..)
+import Mdc.Style exposing (..)
 
 
 onHover : String -> List (Property msg) -> List (Property msg) -> Model -> (Model -> msg) -> Property msg
@@ -39,8 +41,7 @@ setHover id model msg hover =
         { model | hover = Dict.remove id model.hover |> Dict.insert id hover } |> msg
 
 
-doUpdate : Maybe Bool -> Maybe Bool
-doUpdate h =
-  case h of
-      Nothing -> h
-      Just h  -> Just h
+
+isIcon : Property msg
+isIcon =
+  class "material-icons"

@@ -30,174 +30,178 @@ view model =
     , a [ href "https://github.com/material-components/material-components-web/blob/master/demos/card.html", target "_black" ] [ text "Mdc github" ]
     , br [] []
     , br [] []
-    , section
-        [ class "demo-typography--section"
-        , class "mdc-typography"
-        ]
-        [ card
-            [ class "demo-card" ]
-            [ media
-                [ class "demo-card__16-9-media" ]
-                []
-            , content [] [ text "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor." ]
+    , div
+        [ class "card" ]
+        [ section
+            [ class "demo-typography--section"
+            , class "mdc-typography"
             ]
-
-        , card
-            [ class "demo-card"
-            , class "demo-card--with-avatar" ]
-            [ primary []
-                [ div [ class "demo-card__avatar" ] []
-                , title [] [ text "Title" ]
-                , subTitle [] [ text "Subhead" ]
+            [ card
+                [ class "demo-card" ]
+                [ media
+                    [ class "demo-card__16-9-media" ]
+                    []
+                , content [] [ text "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor." ]
                 ]
-            , media
-                [ class "demo-card__16-9-media" ]
-                []
-            , content [] [ text "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor." ]
-            , actions [] [ actionButton [] [ text "Action 1" ]
-                         , actionButton [] [ text "Action 2" ]
-                         ]
-            ]
 
-        , card
-            [ class "demo-card"
-            , class "demo-card--with-avatar" ]
-            [ primary []
-                [ div [ class "demo-card__avatar" ] []
-                , title [] [ text "Title" ]
-                , subTitle [] [ text "Subhead" ]
-                ]
-            , media
-                [ class "demo-card__16-9-media" ]
-                []
-            , content [] [ text "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor." ]
-            , actions [ vertical ]
-              [ actionButton [] [ text "Action 1" ]
-              , actionButton [] [ text "Action 2" ]
-              ]
-            ]
-
-        , card
-            [ class "demo-card" ]
-            [ media
-                [ class "demo-card__16-9-media" ]
-                []
-            , primary []
-                [ title [ largeTitle ] [ text "Title goes here" ]
-                , subTitle [] [ text "Subhead here" ]
-                ]
-            , actions [] [ actionButton [] [ text "Action 1" ]
-                         , actionButton [] [ text "Action 2" ]
-                         ]
-            ]
-
-        , card
-            [ class "demo-card" ]
-            [ primary []
-                [ title [ largeTitle ] [ text "Title goes here" ]
-                , subTitle [] [ text "Subhead here" ]
-                ]
-            , content [] [ text "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." ]
-            , actions [] [ actionButton [] [ text "Action 1" ]
-                         , actionButton [] [ text "Action 2" ]
-                         ]
-            ]
-
-        , card
-            [ class "demo-card"
-            , class "demo-card--bg-demo"
-            , darkCard ]
-            [ primary []
-                [ title [ largeTitle ] [ text "Title goes here" ]
-                , subTitle [] [ text "Subhead here" ]
-                ]
-            , actions [] [ actionButton [ darkButton ] [ text "Action 1" ]
-                         , actionButton [ darkButton ] [ text "Action 2" ]
-                         ]
-            ]
-
-        , card
-            [ class "demo-card"
-            , class "demo-card--small" ]
-            [ media
-                [ class "demo-card__16-9-media" ]
-                [ title [ largeTitle ] [ text "Title" ]
-                ]
-            , actions [] [ actionButton [] [ text "Action 1" ]
-                         ]
-            ]
-
-        , card
-            [ class "demo-card" ]
-            [ horizontal
-                []
+            , card
+                [ class "demo-card"
+                , class "demo-card--with-avatar" ]
                 [ primary []
-                    [ title [ largeTitle ] [ text "Title here" ]
-                    , subTitle [] [ text "Subtitle here" ]
+                    [ div [ class "demo-card__avatar" ] []
+                    , title [] [ text "Title" ]
+                    , subTitle [] [ text "Subhead" ]
                     ]
-                , mediaItem
-                    [ src "/assets/images/1-1.jpg"
-                    ]
-                    [ ]
+                , media
+                    [ class "demo-card__16-9-media" ]
+                    []
+                , content [] [ text "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor." ]
+                , actions [] [ actionButton [] [ text "Action 1" ]
+                             , actionButton [] [ text "Action 2" ]
+                             ]
                 ]
-            , actions [] [ actionButton [] [ text "Action 1" ]
-                         , actionButton [] [ text "Action 2" ]
-                         ]
-            ]
 
-        , card
-            [ class "demo-card" ]
-            [ horizontal
-                []
+            , card
+                [ class "demo-card"
+                , class "demo-card--with-avatar" ]
                 [ primary []
-                    [ title [ largeTitle ] [ text "Title here" ]
-                    , subTitle [] [ text "Subtitle here" ]
+                    [ div [ class "demo-card__avatar" ] []
+                    , title [] [ text "Title" ]
+                    , subTitle [] [ text "Subhead" ]
                     ]
-                , mediaItem
-                    [ src "/assets/images/1-1.jpg"
-                    , size1dot5x
-                    ]
-                    [ ]
-                ]
-            , actions [] [ actionButton [] [ text "Action 1" ]
-                         , actionButton [] [ text "Action 2" ]
-                         ]
-            ]
-
-        , card
-            [ class "demo-card" ]
-            [ horizontal
-                []
-                [ primary []
-                    [ title [ largeTitle ] [ text "Title here" ]
-                    , subTitle [] [ text "Subtitle here" ]
-                    ]
-                , mediaItem
-                    [ src "/assets/images/1-1.jpg"
-                    , size2x
-                    ]
-                    [ ]
-                ]
-            , actions [] [ actionButton [] [ text "Action 1" ]
-                         , actionButton [] [ text "Action 2" ]
-                         ]
-            ]
-
-        , card
-            [ class "demo-card" ]
-            [ horizontal
-                []
-                [ mediaItem
-                    [ src "/assets/images/1-1.jpg"
-                    , size3x
-                    ]
-                    [ ]
+                , media
+                    [ class "demo-card__16-9-media" ]
+                    []
+                , content [] [ text "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor." ]
                 , actions [ vertical ]
-                  [ actionButton [] [ text "A1" ]
-                  , actionButton [] [ text "A2" ]
+                  [ actionButton [] [ text "Action 1" ]
+                  , actionButton [] [ text "Action 2" ]
                   ]
                 ]
-            ]
 
+            , card
+                [ class "demo-card" ]
+                [ media
+                    [ class "demo-card__16-9-media" ]
+                    []
+                , primary []
+                  [ title [ largeTitle ] [ text "Title goes here" ]
+                  , subTitle [] [ text "Subhead here" ]
+                  ]
+                , actions [] [ actionButton [] [ text "Action 1" ]
+                             , actionButton [] [ text "Action 2" ]
+                             ]
+                ]
+
+            , card
+                [ class "demo-card" ]
+                [ primary []
+                    [ title [ largeTitle ] [ text "Title goes here" ]
+                    , subTitle [] [ text "Subhead here" ]
+                    ]
+                , content [] [ text "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." ]
+                , actions [] [ actionButton [] [ text "Action 1" ]
+                             , actionButton [] [ text "Action 2" ]
+                             ]
+                ]
+
+            , card
+                [ class "demo-card"
+                , class "demo-card--bg-demo"
+                , darkCard ]
+                [ primary []
+                    [ title [ largeTitle ] [ text "Title goes here" ]
+                    , subTitle [] [ text "Subhead here" ]
+                    ]
+                , actions [] [ actionButton [ darkButton ] [ text "Action 1" ]
+                             , actionButton [ darkButton ] [ text "Action 2" ]
+                             ]
+                ]
+
+            , card
+                [ class "demo-card"
+                , class "demo-card--small" ]
+                [ media
+                    [ class "demo-card__16-9-media" ]
+                    [ title [ largeTitle ] [ text "Title" ]
+                    ]
+                , actions [] [ actionButton [] [ text "Action 1" ]
+                             ]
+                ]
+
+            , card
+                [ class "demo-card" ]
+                [ horizontal
+                    []
+                    [ primary []
+                        [ title [ largeTitle ] [ text "Title here" ]
+                        , subTitle [] [ text "Subtitle here" ]
+                        ]
+                    , mediaItem
+                        [ src "/assets/images/1-1.jpg"
+                        ]
+                        [ ]
+                    ]
+                , actions [] [ actionButton [] [ text "Action 1" ]
+                             , actionButton [] [ text "Action 2" ]
+                             ]
+                ]
+
+            , card
+                [ class "demo-card" ]
+                [ horizontal
+                    []
+                    [ primary []
+                        [ title [ largeTitle ] [ text "Title here" ]
+                        , subTitle [] [ text "Subtitle here" ]
+                        ]
+                    , mediaItem
+                        [ src "/assets/images/1-1.jpg"
+                        , size1dot5x
+                        ]
+                        [ ]
+                    ]
+                , actions [] [ actionButton [] [ text "Action 1" ]
+                             , actionButton [] [ text "Action 2" ]
+                             ]
+                ]
+
+            , card
+                [ class "demo-card" ]
+                [ horizontal
+                    []
+                    [ primary []
+                        [ title [ largeTitle ] [ text "Title here" ]
+                        , subTitle [] [ text "Subtitle here" ]
+                        ]
+                    , mediaItem
+                        [ src "/assets/images/1-1.jpg"
+                        , size2x
+                        ]
+                        [ ]
+                    ]
+                , actions [] [ actionButton [] [ text "Action 1" ]
+                             , actionButton [] [ text "Action 2" ]
+                             ]
+                ]
+
+            , card
+                [ class "demo-card" ]
+                [ horizontal
+                    []
+                    [ mediaItem
+                        [ src "/assets/images/1-1.jpg"
+                        , size3x
+                        ]
+                        [ ]
+                    , actions [ vertical ]
+                      [ actionButton [] [ text "A1" ]
+                      , actionButton [] [ text "A2" ]
+                      ]
+                    ]
+                ]
+
+            ]
         ]
+    , div [ style [("height", "100px")] ] []
     ]

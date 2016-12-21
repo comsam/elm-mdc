@@ -13,22 +13,22 @@
     <style>
 
      /* Cards */
-      .demo-card {
+      .card .demo-card {
         max-width: 21.875rem; /* 350sp */
         margin-bottom: 48px;
       }
 
       @media(min-width: 768px) {
-        .demo-card {
+        .card .demo-card {
           margin-bottom: 24px;
         }
       }
 
-      .demo-card--with-avatar .mdc-card__primary {
+      .card .demo-card--with-avatar .mdc-card__primary {
         position: relative;
       }
 
-      .demo-card--with-avatar .demo-card__avatar {
+      .card .demo-card--with-avatar .demo-card__avatar {
         position: absolute;
         background: #bdbdbd;
         height: 2.5rem; /* 40sp */
@@ -36,12 +36,12 @@
         border-radius: 50%;
       }
 
-      .demo-card--with-avatar .mdc-card__title,
-      .demo-card--with-avatar .mdc-card__subtitle {
+      .card .demo-card--with-avatar .mdc-card__title,
+      .card .demo-card--with-avatar .mdc-card__subtitle {
         margin-left: 56px;
       }
 
-      .demo-card__16-9-media {
+      .card .demo-card__16-9-media {
         background-image: url("/assets/images/16-9.jpg");
         background-size: cover;
         background-repeat: no-repeat;
@@ -49,24 +49,24 @@
       }
 
      /* Card 6 */
-     .demo-card--bg-demo {
+     .card .demo-card--bg-demo {
        height: 21.875rem; /* 350sp */
        background-image: url("/assets/images/1-1.jpg");
        background-size: cover;
        background-repeat: no-repeat;
      }
 
-     .demo-card--bg-demo .mdc-card__primary,
-     .demo-card--bg-demo .mdc-card__actions {
+     .card .demo-card--bg-demo .mdc-card__primary,
+     .card .demo-card--bg-demo .mdc-card__actions {
        background: rgba(0, 0, 0, .4);
      }
 
      /* Card 7 */
-     .demo-card--small {
+     .card .demo-card--small {
        max-width: 10.938rem; /* 175sp */
      }
 
-     .demo-card--small .mdc-card__media {
+     .card .demo-card--small .mdc-card__media {
        background-image: url("/assets/images/1-1.jpg");
        background-size: cover;
        background-repeat: no-repeat;
@@ -74,13 +74,12 @@
      }
 
      /* Elevations */
-     .demo-surfaces {
+     .elevation .demo-surfaces {
        display: flex;
        flex-direction: row;
        flex-wrap: wrap;
      }
-
-     .demo-surface {
+     .elevation .demo-surface {
        display: flex;
        align-items: center;
        justify-content: center;
@@ -94,8 +93,7 @@
        color: #9E9E9E;
        background: white;
      }
-
-     #hover-el {
+     .elevation #hover-el {
        display: flex;
        align-items: center;
        justify-content: center;
@@ -106,25 +104,65 @@
      /* Buttons */
 
      /* Make the demo look a little bit better */
-     fieldset {
+     .button fieldset {
        margin-bottom: 0.5rem;
-
      }
-     fieldset .mdc-button {
+     .button fieldset .mdc-button {
        margin: 16px;
-
      }
-     .mdc-theme--dark fieldset {
+     .button .mdc-theme--dark fieldset {
        background-color: #333;
-
      }
-     legend {
+     .button legend {
        background: white;
-
      }
 
      /* Ripple */
+     .ripple .demo-surface {
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       width: 200px;
+       height: 100px;
+       padding: 1rem;
+       cursor: pointer;
+       user-select: none;
+       -webkit-user-select: none;
+     }
+     .ripple .demo-surface[data-mdc-ripple-is-unbounded] {
+       width: 40px;
+       height: 40px;
+       padding: 0;
+       border-radius: 50%;
+     }
+     .ripple button.demo-surface {
+       display: inline-block; /* Safari does not center button text otherwise :( */
+       background: none;
+       border: none;
+       -webkit-appearance: none;
+       -moz-appearance: none;
+       appearance: none;
+     }
+     .ripple section {
+       margin: 48px;
+     }
+     .ripple #unsupported-msg {
+       padding: 1rem;
+       border: 1px solid red;
+       color: red;
+       border-radius: 4px;
+       display: none;
+     }
+     .ripple .unsupported #unsupported-msg {
+       display: block;
+     }
+     .ripple .unsupported .main {
+       opacity: .2;
+       pointer-events: none;
+       user-select: none;
+       -webkit-user-select: none;
 
+     }
     </style>
   </head>
   <body>
