@@ -20,11 +20,13 @@ view model =
   div
   []
   [ h1 [] [ text "MDC Web Button" ]
-  , a [ href <| reverse HomeRoute ] [ text "Back" ]
-  , text " - "
   , button [ onClick <| NavigateTo HomeRoute ] [ text "Back" ]
   , text " - "
+  , a [ href <| reverse HomeRoute ] [ text "Back" ]
+  , text " - "
   , a [ href "https://material-components-web.appspot.com/button.html", target "_black" ] [ text "Mdc demo" ]
+  , text " - "
+  , a [ href "https://github.com/material-components/material-components-web/blob/master/demos/button.html", target "_black" ] [ text "Mdc github" ]
   , br [] []
   , br [] []
   , section []

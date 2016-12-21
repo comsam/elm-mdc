@@ -1,4 +1,4 @@
-module View exposing (view)
+module Views.Main exposing (view)
 
 import Html exposing (Html)
 import Html.Lazy
@@ -38,6 +38,9 @@ homePage : Html Msg
 homePage =
   div
     [] [ h1 [] [ text "Material Design Components" ]
+       , a [ href "https://material-components-web.appspot.com/", target "_black" ] [ text "Mdc demo" ]
+       , text " - "
+       , a [ href "https://github.com/material-components/material-components-web/blob/master/demos/", target "_black" ] [ text "Mdc github" ]
        , br [] []
        , br [] []
        , button [ onClick <| NavigateTo ButtonsRoute ] [ text "Buttons" ]

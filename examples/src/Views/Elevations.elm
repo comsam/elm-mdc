@@ -22,11 +22,13 @@ view model =
   div
     []
     [ h1 [] [ text "MDC Elevations" ]
-    , a [ href <| reverse HomeRoute ] [ text "Back" ]
-    , text " - "
     , button [ onClick <| NavigateTo HomeRoute ] [ text "Back" ]
     , text " - "
+    , a [ href <| reverse HomeRoute ] [ text "Back" ]
+    , text " - "
     , a [ href "https://material-components-web.appspot.com/elevation.html", target "_black" ] [ text "Mdc demo" ]
+    , text " - "
+    , a [ href "https://github.com/material-components/material-components-web/blob/master/demos/elevation.html", target "_black" ] [ text "Mdc github" ]
     , br [] []
     , br [] []
     , section

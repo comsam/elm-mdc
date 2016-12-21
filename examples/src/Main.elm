@@ -4,7 +4,7 @@ import Messages exposing (Msg, Msg(NavigateTo))
 import Model exposing (Model, initialModel)
 import Routing exposing (routeParser, reverse)
 import Update exposing (update)
-import View exposing (view)
+import Views.Main exposing (view)
 
 import RouteUrl exposing (RouteUrlProgram)
 import UrlParser exposing (..)
