@@ -1,9 +1,12 @@
 var path = require("path");
-
+console.log(path.join(__dirname, '..', 'src'))
 module.exports = {
     entry: {
         app: [
             './src/index.js'
+        ],
+        mdc: [
+            '../src/Mdc.elm'
         ]
     },
 
@@ -28,9 +31,9 @@ module.exports = {
             },
             {
                 test: /\.elm$/,
+                //include: [__dirname + '/../'],
                 exclude: [/elm-stuff/, /node_modules/],
-                //loader: 'elm-hot!elm-webpack'
-                loader: 'elm-webpack?&debug=true'
+                loader: 'elm-hot!elm-webpack?verbose=true&warn=true&debug=true'//&pathToMake=./&cwd=' + __dirname + '/../src/'
             },
             {
                 test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,

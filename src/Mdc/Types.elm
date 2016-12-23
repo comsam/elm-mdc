@@ -2,8 +2,8 @@ module Mdc.Types
   exposing
     ( Msg
     , Msg (..)
-    , Update
-    , Update (..)
+    , Payload
+    , Payload (..)
     , Model
     , model
     )
@@ -13,10 +13,10 @@ import Dict exposing (..)
 
 
 type Msg
-  = Update Update
+  = Update Payload
 
 
-type Update
+type Payload
   = Hover String Bool
   | Ripple
 

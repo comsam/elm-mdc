@@ -9,7 +9,7 @@ module Mdc.Enhance.Ripple
 import Dict
 import Json.Decode as Json exposing (field, at)
 
-import Mdc.Types exposing (Msg, Update, Model)
+import Mdc.Types exposing (Msg, Payload, Model)
 import Mdc.Enhance.Dom exposing (..)
 import Mdc.Html.Attributes exposing (..)
 import Mdc.Html.Events exposing (..)
@@ -108,9 +108,9 @@ geometryDecoder =
     (field "type" Json.string)
 
 
-update : Msg -> Model -> (Model, Cmd Msg)
+update : Payload -> Model -> (Model, Maybe Msg)
 update msg model =
-  (model, Cmd.none)
+  (model, Nothing)
 
 
 

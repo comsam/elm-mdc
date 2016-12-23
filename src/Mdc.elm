@@ -1,6 +1,6 @@
 module Mdc
   exposing
-    ( update
+    ( update1
     )
 
 
@@ -14,22 +14,38 @@ module Mdc
 -}
 import Mdc.Types
   exposing
-  ( Msg
-  , Msg (..)
-  , Update
-  , Update (..)
-  , Model
-  )
-import Mdc.Enhance.Ripple exposing (update)
+    ( Msg
+    , Msg (..)
+    , Payload
+    , Payload (..)
+    , Model
+    )
 
+import Mdc.Types
+import Mdc.Style
 
-update : Msg -> Model -> (Model, Cmd Msg)
-update msg model =
-  case msg of
-      Update message ->
-        case message of
-            Hover _ _ ->
-              --Mdc.Enhance.Hover.update msg model
-              (model, Cmd.none)
-            Ripple ->
-              Mdc.Enhance.Ripple.update msg model
+import Mdc.Button
+import Mdc.Card
+import Mdc.Elevation
+
+import Mdc.Html
+import Mdc.Html.Attributes
+import Mdc.Html.Events
+
+import Mdc.Enhance
+import Mdc.Enhance.Dom
+import Mdc.Enhance.Hover
+import Mdc.Enhance.Ripple
+
+update1 : Payload -> Model -> (Model -> model) -> msg -> (model, Cmd msg)
+update1 payload model merge msg =
+    let
+        (m, c) =
+            case payload of
+                Hover _ _ ->
+                    Mdc.Enhance.Hover.update payload model msg
+                Ripple ->
+                    (model, Cmd.none)
+                    --Mdc.Enhance.Ripple.update payload model
+    in
+        (merge m, Cmd.batch [c])
