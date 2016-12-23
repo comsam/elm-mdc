@@ -7,7 +7,7 @@ module Mdc.Enhance
 import Dict exposing (..)
 import Html.Events exposing (onMouseEnter, onMouseLeave)
 
-import Mdc exposing (Model)
+import Mdc.Types exposing (Model)
 import Mdc.Html exposing (..)
 import Mdc.Html.Attributes exposing (..)
 import Mdc.Style exposing (..)

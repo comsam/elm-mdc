@@ -10,7 +10,7 @@ import Mdc.Style exposing (..)
 import Mdc.Button exposing (button, raised)
 import Mdc.Elevation exposing (e2)
 import Mdc.Enhance exposing (onHover, isIcon)
-import Mdc.Enhance.Ripple exposing (addRipple, Bounding(..))
+--import Mdc.Enhance.Ripple exposing (addRipple, Bounding(..))
 import Mdc.Html exposing (div, p, h1, h2, text, a, br, section, fieldset, legend, code, figure, figcaption)
 import Mdc.Html.Attributes exposing (..)
 import Mdc.Html.Events exposing (..)
@@ -43,7 +43,7 @@ view model =
             , div
                 [ class "demo-surface"
                 , e2
-                , addRipple Bounded Normal
+                --, addRipple Bounded Normal
                 , tabindex 0
                 ]
                 [ text "Interact with me!" ]
@@ -55,7 +55,7 @@ view model =
             , div
                 [ class "demo-surface"
                 , isIcon
-                , addRipple Unbounded Normal
+                --, addRipple Unbounded Normal
                 --, aria-label "Favorite" --TODO
                 , tabindex 1
                 ]
@@ -69,7 +69,7 @@ view model =
                 [ class "demo-surface"
                 , e2
                 , isPrimary
-                , addRipple Bounded Primary
+                --, addRipple Bounded Primary
                 , tabindex 1
                 ]
                 [ text "Primary" ]
@@ -77,7 +77,7 @@ view model =
                 [ class "demo-surface"
                 , e2
                 , isAccent
-                , addRipple Bounded Accent
+                --, addRipple Bounded Accent
                 , tabindex 1
                 ]
                 [ text "Accent" ]
@@ -91,7 +91,7 @@ view model =
             , button
                 [ class "demo-surface"
                 , raised
-                , addRipple Bounded Normal
+                --, addRipple Bounded Normal
                 ]
                 [ text "button" ]
             ]
