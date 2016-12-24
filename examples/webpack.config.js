@@ -1,13 +1,24 @@
 var path = require("path");
-console.log(path.join(__dirname, '..', 'src'))
+
+// List all files [as directory tree] in Node.js recursively in a synchronous fashion
+var walkSync = function(dir, filelist) {
+    var fs = fs || require('fs'),
+        files = fs.readdirSync(dir);
+    filelist = filelist || [];
+    files.forEach(function(file) {
+        if (fs.statSync(dir + '/' + file).isDirectory()) {
+            walkSync(dir + '/' + file, filelist);
+        }
+        else { filelist.push(path.join(dir, file)); }
+    });
+};
+
+var elmFiles = ['./src/index.js'];
+walkSync("../src/", elmFiles);
+
 module.exports = {
     entry: {
-        app: [
-            './src/index.js'
-        ],
-        mdc: [
-            '../src/Mdc.elm'
-        ]
+        app: elmFiles
     },
 
     output: {
@@ -33,7 +44,7 @@ module.exports = {
                 test: /\.elm$/,
                 //include: [__dirname + '/../'],
                 exclude: [/elm-stuff/, /node_modules/],
-                loader: 'elm-hot!elm-webpack?verbose=true&warn=true&debug=true'//&pathToMake=./&cwd=' + __dirname + '/../src/'
+                loader: 'elm-hot!elm-webpack?verbose=true&warn=true&debug=true'
             },
             {
                 test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -50,6 +61,10 @@ module.exports = {
 
     devServer: {
         inline: true,
-        stats: { colors: true }
+        stats: {
+            chunkModules: false,
+            assets: false,
+            colors: true
+        }
     }
 };

@@ -1,12 +1,9 @@
 module Update exposing (update)
 
-import Task
-import Navigation
 import Messages exposing (Msg, Msg(..))
 import Model exposing (Model)
-import Routing exposing (Route(..), reverse)
 
-import Mdc exposing (update1)
+import Mdc exposing (update)
 import Mdc.Types
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -15,8 +12,8 @@ update msg model =
       NavigateTo route ->
           ( { model | route = route }, Cmd.none )
 
-      Update payload ->
-          Mdc.update1 payload model.mdc (merge model) Update
+      Mdc payload ->
+          Mdc.update payload model.mdc (merge model) Mdc
 
       _ ->
           ( model, Cmd.none )

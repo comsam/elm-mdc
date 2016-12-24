@@ -7,7 +7,6 @@ import Update exposing (update)
 import Views.Main exposing (view)
 
 import RouteUrl exposing (RouteUrlProgram)
-import UrlParser exposing (..)
 import RouteUrl exposing (UrlChange, HistoryEntry(NewEntry))
 import Navigation exposing (Location)
 
@@ -29,6 +28,7 @@ init =
   (initialModel, Cmd.none)
 
 
+subscriptions : a -> Sub msg
 subscriptions model =
   Sub.none
 

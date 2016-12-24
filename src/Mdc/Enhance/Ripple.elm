@@ -9,7 +9,7 @@ module Mdc.Enhance.Ripple
 import Dict
 import Json.Decode as Json exposing (field, at)
 
-import Mdc.Types exposing (Msg, Payload, Model)
+import Mdc.Types exposing (Msg, Model)
 import Mdc.Enhance.Dom exposing (..)
 import Mdc.Html.Attributes exposing (..)
 import Mdc.Html.Events exposing (..)
@@ -17,27 +17,37 @@ import Mdc.Style exposing (Mode, Mode (..))
 
 
 type RippleMsg
-  = Down DomState
-  | Up
-  | Tick
+    = Down DomState
+    | Up
+    | Tick
 
 {-|
  -}
 type Bounding
-  = Bounded
-  | Unbounded
+    = Bounded
+    | Unbounded
 
 
 type alias DomState =
-  { rect : Mdc.Enhance.Dom.Rectangle
-  , clientX : Maybe Float
-  , clientY : Maybe Float
-  , touchX : Maybe Float
-  , touchY : Maybe Float
-  , type_ : String
-  }
+    { rect : Mdc.Enhance.Dom.Rectangle
+    , clientX : Maybe Float
+    , clientY : Maybe Float
+    , touchX : Maybe Float
+    , touchY : Maybe Float
+    , type_ : String
+    }
 
 
+type alias Durations =
+    { active_opacity_duration_ms : Int
+    , fg_transform_delay_ms : Int
+    , min_opacity_duration_ms : Int
+    , opacity_duration_divisor : Int
+    , unbound_transform_duration_ms : Int
+    }
+
+
+durations : Durations
 durations =
   { fg_transform_delay_ms = 80
   , opacity_duration_divisor = 3
@@ -47,12 +57,27 @@ durations =
   }
 
 
+root : String
 root = "mdc-ripple"
 
 
+upgraded : String
 upgraded = root ++ "-upgraded"
 
 
+type alias CssClasses =
+    { bg_active : String
+    , bg_bounded_active_fill : String
+    , fg_bounded_active_fill : String
+    , fg_unbounded_activation : String
+    , fg_unbounded_deactivation : String
+    , root : String
+    , surface : String
+    , unbounded : String
+    }
+
+
+cssClasses : CssClasses
 cssClasses =
   { root = upgraded
   , surface = root ++ "-surface"
@@ -65,6 +90,23 @@ cssClasses =
   }
 
 
+type alias Strings =
+    { animation_end_event : List String
+    , transition_end_event : List String
+    , var_fg_approx_xf : String
+    , var_fg_size : String
+    , var_fg_unbounded_opacity_duration : String
+    , var_fg_unbounded_transform_duration : String
+    , var_left : String
+    , var_surface_height : String
+    , var_surface_width : String
+    , var_top : String
+    , var_xf_origin_x : String
+    , var_xf_origin_y : String
+    }
+
+
+strings : Strings
 strings =
   { var_surface_width = "--" ++ root ++ "-surface-width"
   , var_surface_height = "--" ++ root ++ "-surface-height"
@@ -108,9 +150,9 @@ geometryDecoder =
     (field "type" Json.string)
 
 
-update : Payload -> Model -> (Model, Maybe Msg)
+update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
-  (model, Nothing)
+  (model, Cmd.none)
 
 
 

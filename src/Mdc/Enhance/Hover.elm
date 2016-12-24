@@ -7,14 +7,12 @@ module Mdc.Enhance.Hover
 
 import Dict exposing (..)
 
-import Mdc.Types exposing (Msg, Msg(Update), Payload, Payload (..), Model)
-import Mdc.Html exposing (..)
+import Mdc.Types exposing (Msg, Msg(Hover), Model)
 import Mdc.Html.Attributes exposing (..)
 import Html.Events exposing (onMouseEnter, onMouseLeave)
-import Mdc.Style exposing (..)
 
 
-onHover : String -> List (Property msg) -> List (Property msg) -> Model -> (Payload -> msg) -> Property msg
+onHover : String -> List (Property msg) -> List (Property msg) -> Model -> (Msg -> msg) -> Property msg
 onHover id normal hover model msg =
     let
         attr =
@@ -33,17 +31,17 @@ onHover id normal hover model msg =
                         Many <| (attr ++ normal)
 
 
-update : Payload -> Model -> msg -> (Model, Cmd msg)
-update payload model msg =
-    case payload of
+update : Msg -> Model -> (Model, Cmd Msg)
+update msg model =
+    case msg of
         Hover id hovered ->
-            (setHover id hovered model msg, Cmd.none)
+            (setHover id hovered model, Cmd.none)
         _ ->
             (model, Cmd.none)
 
 
-setHover : String -> Bool -> Model -> msg -> Model
-setHover id hover model msg =
+setHover : String -> Bool -> Model -> Model
+setHover id hover model =
     case Dict.get id model.hover of
         Nothing ->
             { model | hover = Dict.insert id hover model.hover }

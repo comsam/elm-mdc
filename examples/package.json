@@ -5,7 +5,7 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack --watch",
-    "dev": "webpack-dev-server --port 3000 --hot --inline --content-base examples/src/"
+    "dev": "webpack-dev-server --port 3000 --hot --inline"
   },
   "repository": {
     "type": "git",

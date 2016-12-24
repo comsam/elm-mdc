@@ -69,7 +69,7 @@ view model =
             [ div
                 [ id "hover-el"
                 , class "mdc-elevation-transition"
-                , onHover "hover-el" [ e2 ] [ e6 ] model.mdc Update
+                , onHover "hover-el" [ e2 ] [ e6 ] model.mdc Mdc
                 ]
                 [ p [] [ text "Hover over or tap me for a transition" ]
                 ]
