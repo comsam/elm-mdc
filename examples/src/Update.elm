@@ -12,8 +12,8 @@ update msg model =
       NavigateTo route ->
           ( { model | route = route }, Cmd.none )
 
-      Mdc payload ->
-          Mdc.update payload model.mdc (merge model) Mdc
+      Mdc mdc ->
+          Mdc.update mdc model.mdc (merge model) Mdc
 
       _ ->
           ( model, Cmd.none )

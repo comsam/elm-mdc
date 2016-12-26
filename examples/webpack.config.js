@@ -1,6 +1,7 @@
 var path = require("path");
 
 // List all files [as directory tree] in Node.js recursively in a synchronous fashion
+
 var walkSync = function(dir, filelist) {
     var fs = fs || require('fs'),
         files = fs.readdirSync(dir);
@@ -9,12 +10,15 @@ var walkSync = function(dir, filelist) {
         if (fs.statSync(dir + '/' + file).isDirectory()) {
             walkSync(dir + '/' + file, filelist);
         }
-        else { filelist.push(path.join(dir, file)); }
+        else {
+            filelist.push(path.resolve(path.join(dir, file)));
+        }
     });
 };
 
 var elmFiles = ['./src/index.js'];
 walkSync("../src/", elmFiles);
+//walkSync("./src/", elmFiles);
 
 module.exports = {
     entry: {
@@ -42,7 +46,6 @@ module.exports = {
             },
             {
                 test: /\.elm$/,
-                //include: [__dirname + '/../'],
                 exclude: [/elm-stuff/, /node_modules/],
                 loader: 'elm-hot!elm-webpack?verbose=true&warn=true&debug=true'
             },
@@ -60,7 +63,6 @@ module.exports = {
     },
 
     devServer: {
-        inline: true,
         stats: {
             chunkModules: false,
             assets: false,

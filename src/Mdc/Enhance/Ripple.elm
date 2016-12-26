@@ -9,33 +9,18 @@ module Mdc.Enhance.Ripple
 import Dict
 import Json.Decode as Json exposing (field, at)
 
-import Mdc.Types exposing (Msg, Model)
+import Mdc.Types exposing (..)
 import Mdc.Enhance.Dom exposing (..)
 import Mdc.Html.Attributes exposing (..)
 import Mdc.Html.Events exposing (..)
 import Mdc.Style exposing (Mode, Mode (..))
 
 
-type RippleMsg
-    = Down DomState
-    | Up
-    | Tick
-
 {-|
  -}
 type Bounding
     = Bounded
     | Unbounded
-
-
-type alias DomState =
-    { rect : Mdc.Enhance.Dom.Rectangle
-    , clientX : Maybe Float
-    , clientY : Maybe Float
-    , touchX : Maybe Float
-    , touchY : Maybe Float
-    , type_ : String
-    }
 
 
 type alias Durations =
@@ -150,90 +135,57 @@ geometryDecoder =
     (field "type" Json.string)
 
 
-update : Msg -> Model -> (Model, Cmd Msg)
-update msg model =
-  (model, Cmd.none)
+onDown : String -> String -> (Msg -> msg) -> Property msg
+onDown id name msg =
+    Mdc.Html.Events.on name (Json.map ((Down id) >> Ripple >> msg) geometryDecoder)
 
 
+onUp : String -> String -> (Msg -> msg) -> Property msg
+onUp id name msg =
+    Mdc.Html.Events.on name (Json.succeed (msg <| Ripple <| Up <| id))
 
 
-{-
-onDown : String -> Property Ripple
-onDown =
-  onDown_ identity
-
-
-onDown_ : (Ripple -> m) -> String -> Property m
-onDown_ f name =
-  Attribute << Mdc.Html.Events.on <| name (Json.map (Down >> f) geometryDecoder)
-
-
-onUp : String -> Property Ripple
-onUp =
-  onUp_ identity
-
-
-onUp_ : (Ripple -> m) -> String -> Property m
-onUp_ f name =
-  Attribute << Mdc.Html.Events.on <| name (Json.succeed (f Up))
-
--}
-addRipple : String -> Bounding -> Mode -> Model -> (Model -> msg) -> Property msg
+addRipple : String -> Bounding -> Mode -> Model -> (Msg -> msg) -> Property msg
 addRipple id bounding mode model msg =
-{-
   let
-    classes =
-      case mode of
-          Normal ->
-            Many <| defaultClasses bounding
-          Primary ->
-            Many <|
-              defaultClasses ++ [ class "mdc-ripple-surface--primary" ]
-          Accent ->
-            Many <|
-              defaultClasses ++ [ class "mdc-ripple-surface--accent" ]
+      defClasses =
+          defaultClasses bounding
 
-    attr =
-      [ onUp <| "touchstart"  --activateRipple
-      , onDown <| "touchend"    --deActivateRipple
-      , onDown <| "pointerdown" --activateRipple
-      , onUp <| "pointerup"   --deActivateRipple
-      , onDown <| "mousedown" --activateRipple
-      , onUp <| "mouseup" --deActivateRipple
-      , onDown <| "keydown" --activateRipple
-      , onUp <| "keyup" --deActivateRipple
-      --, Attribute << onFocus     <| focus --setRipple id model msg False
-      --, Attribute << onBlur      <| blur  --setRipple id model msg False
-      ] ++ classes
+      classes =
+          case mode of
+              Normal ->
+                  defClasses
+              Primary ->
+                  defClasses ++ [ class "mdc-ripple-surface--primary" ]
+              Accent ->
+                  defClasses ++ [ class "mdc-ripple-surface--accent" ]
+
+      attr =
+          [ onUp id "touchstart" msg
+          , onDown id "touchend" msg
+          , onDown id "pointerdown" msg
+          , onUp id "pointerup" msg
+          , onDown id "mousedown" msg
+          , onUp id "mouseup" msg
+          , onDown id "keydown" msg
+          , onUp id "keyup" msg
+          --, Attribute << onFocus     <| focus --setRipple id model msg False
+          --, Attribute << onBlur      <| blur  --setRipple id model msg False
+          ] ++ classes
   in
       case Dict.get id model.ripple of
           Nothing ->
             Many <| attr
-          Just rippled ->
-            Many <| attr
+          Just ripple ->
+              if ripple.isActivated then
+                  Many <| attr ++ [ class cssClasses.bg_active ]
+              else
+                  Many <| attr
 --            case rippled of
 --                True ->
 --                  Many <| attr
 --                False ->
 --                  Many <| attr
--}
-  class "mdc-ripple-surface--primary"
-
---activateRipple =
---  (Json.map (Down >> f) geometryDecoder)
-
-
-
---deActivateRipple =
---  (Json.succeed (f Up))
-
-
-
---focus
-
-
-
---blur
 
 
 
@@ -241,12 +193,23 @@ addRipple id bounding mode model msg =
 
 
 
+update : Msg -> Model -> (Model, Cmd Msg)
+update msg model =
+    case msg of
+        Ripple rippleMsg ->
+            case rippleMsg of
+                Up id ->
+                    (model, Cmd.none)
+                Down id domState ->
+                    (setActivated id model, Cmd.none)
+        _ ->
+            (model, Cmd.none)
 
 
-setRipple : String -> Model -> (Model -> msg) -> Bool -> msg
-setRipple id model msg hover =
-  case Dict.get id model.hover of
-      Nothing ->
-        { model | hover = Dict.insert id hover model.hover } |> msg
-      Just hovered ->
-        { model | hover = Dict.remove id model.hover |> Dict.insert id hover } |> msg
+setActivated : String -> Model -> Model
+setActivated id model =
+    case Dict.get id model.ripple of
+        Nothing ->
+            { model | ripple = Dict.insert id { isActivated = True } model.ripple }
+        Just ripple ->
+            { model | ripple = Dict.remove id model.ripple |> Dict.insert id { ripple | isActivated = True } }

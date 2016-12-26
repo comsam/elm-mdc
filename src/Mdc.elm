@@ -30,7 +30,7 @@ update message model merge msg =
             case message of
                 Hover _ _ ->
                     Mdc.Enhance.Hover.update message model
-                Ripple ->
+                Ripple _ ->
                     Mdc.Enhance.Ripple.update message model
     in
         (merge mdl, Cmd.map msg cmd)

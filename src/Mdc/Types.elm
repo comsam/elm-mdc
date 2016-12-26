@@ -2,6 +2,8 @@ module Mdc.Types
   exposing
     ( Msg
     , Msg (..)
+    , RippleMsg(..)
+    , DomState
     , Model
     , model
     )
@@ -9,15 +11,33 @@ module Mdc.Types
 
 import Dict exposing (..)
 
+import Mdc.Enhance.Dom exposing (..)
+
+
+
+type alias DomState =
+    { rect : Mdc.Enhance.Dom.Rectangle
+    , clientX : Maybe Float
+    , clientY : Maybe Float
+    , touchX : Maybe Float
+    , touchY : Maybe Float
+    , type_ : String
+    }
+
+
+type RippleMsg
+    = Up String
+    | Down String DomState
+
 
 type Msg
   = Hover String Bool
-  | Ripple
+  | Ripple RippleMsg
 
 
 
 type alias RippleModel =
-  { isActive : Bool
+  { isActivated : Bool
   }
 
 

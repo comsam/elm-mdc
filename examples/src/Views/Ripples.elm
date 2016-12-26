@@ -6,11 +6,12 @@ import Messages exposing (Msg, Msg(..))
 import Model exposing (Model)
 import Routing exposing (Route(..), reverse)
 
+
 import Mdc.Style exposing (..)
 import Mdc.Button exposing (button, raised)
 import Mdc.Elevation exposing (e2)
 import Mdc.Enhance exposing (isIcon)
---import Mdc.Enhance.Ripple exposing (addRipple, Bounding(..))
+import Mdc.Enhance.Ripple exposing (addRipple, Bounding(..))
 import Mdc.Html exposing (div, p, h1, h2, text, a, br, section, fieldset, legend, code, figure, figcaption)
 import Mdc.Html.Attributes exposing (..)
 import Mdc.Html.Events exposing (..)
@@ -43,7 +44,7 @@ view model =
             , div
                 [ class "demo-surface"
                 , e2
-                --, addRipple Bounded Normal
+                , addRipple "ripple-1" Bounded Normal model.mdc Mdc
                 , tabindex 0
                 ]
                 [ text "Interact with me!" ]
@@ -55,7 +56,7 @@ view model =
             , div
                 [ class "demo-surface"
                 , isIcon
-                --, addRipple Unbounded Normal
+                , addRipple "ripple-1" Unbounded Normal model.mdc Mdc
                 --, aria-label "Favorite" --TODO
                 , tabindex 1
                 ]
