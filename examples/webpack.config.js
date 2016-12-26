@@ -1,4 +1,5 @@
 var path = require("path");
+var TouchFilesPlugin = require('./webpack-touch-files-plugin');
 
 // List all files [as directory tree] in Node.js recursively in a synchronous fashion
 
@@ -16,19 +17,22 @@ var walkSync = function(dir, filelist) {
     });
 };
 
-var elmFiles = ['./src/index.js'];
-walkSync("../src/", elmFiles);
-//walkSync("./src/", elmFiles);
+var mdcFiles = ['./src/index.js'];
+walkSync("../src/", mdcFiles);
 
 module.exports = {
     entry: {
-        app: elmFiles
+        app: mdcFiles
     },
 
     output: {
         path: path.resolve(__dirname + '/dist'),
         filename: '[name].js'
     },
+
+    plugins: [
+        new TouchFilesPlugin({ root: "./src/", touch: "./src", trigger: "/src/Mdc" })
+    ],
 
     module: {
         loaders: [
