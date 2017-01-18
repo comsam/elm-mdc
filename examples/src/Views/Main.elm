@@ -15,6 +15,7 @@ import Views.Cards exposing (view)
 import Views.Buttons exposing (view)
 import Views.Elevations exposing (view)
 import Views.Ripples exposing (view)
+import Views.Fabs exposing( view )
 
 import Routing exposing (reverse)
 
@@ -31,6 +32,7 @@ viewLazy ({route} as model) =
       ButtonsRoute         -> Views.Buttons.view model
       ElevationsRoute      -> Views.Elevations.view model
       RipplesRoute         -> Views.Ripples.view model
+      FabsRoute            -> Views.Fabs.view model
       _                    -> notFoundPage
 
 
@@ -52,6 +54,8 @@ homePage =
        , button [ onClick <| NavigateTo ElevationsRoute ] [ text "Elevations" ]
        , br [] []
        , button [ onClick <| NavigateTo RipplesRoute ] [ text "Ripples" ]
+       , br [] []
+       , button [ onClick <| NavigateTo FabsRoute ] [ text "Fabs"]
        ]
 
 {-| Render the 404 Page.

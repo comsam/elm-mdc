@@ -10,6 +10,7 @@ type Route
   | ButtonsRoute
   | ElevationsRoute
   | RipplesRoute
+  | FabsRoute
   | NotFoundRoute
 
 
@@ -22,6 +23,7 @@ matchers =
   , map CardsRoute (s "cards")
   , map ButtonsRoute (s "buttons")
   , map ElevationsRoute (s "elevations")
+  , map FabsRoute (s "fabs")
   , map RipplesRoute (s "ripples")
   ]
 
@@ -55,6 +57,7 @@ reverse route =
             ButtonsRoute       -> "buttons"
             ElevationsRoute    -> "elevations"
             RipplesRoute       -> "ripples"
+            FabsRoute          -> "fabs"
             NotFoundRoute      -> "404"
   in
       "#" ++ routeToString route
