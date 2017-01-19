@@ -8,7 +8,7 @@ import Routing exposing (Route(..), reverse)
 
 import Mdc.Button exposing (button)
 import Mdc.Elevation exposing (..)
-import Mdc.Enhance exposing (onHover)
+import Mdc.Enhance.Hover exposing (onHover)
 import Mdc.Html exposing (div, p, h1, h2, text, a, br, section, fieldset, legend, code, figure, figcaption)
 import Mdc.Html.Attributes exposing (..)
 import Mdc.Html.Events exposing (..)
@@ -69,7 +69,7 @@ view model =
             [ div
                 [ id "hover-el"
                 , class "mdc-elevation-transition"
-                , onHover "hover-el" [ e2 ] [ e6 ] model.mdc OnHover
+                , onHover "hover-el" [ e2 ] [ e6 ] model.mdc Mdc
                 ]
                 [ p [] [ text "Hover over or tap me for a transition" ]
                 ]

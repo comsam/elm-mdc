@@ -1,7 +1,6 @@
 module Mdc
   exposing
-    ( Model
-    , model
+    ( update
     )
 
 
@@ -13,19 +12,25 @@ module Mdc
 #default
 @docs model
 -}
-import Dict exposing (..)
+import Mdc.Types
+  exposing
+    ( Msg
+    , Msg (..)
+    , Model
+    )
 
+import Mdc.Types
+import Mdc.Enhance.Hover
+import Mdc.Enhance.Ripple
 
-{-| Mdc Model definition
--}
-type alias Model =
-  { hover : Dict String Bool
-  }
-
-
-{-| Initial model value
--}
-model : Model
-model =
-  { hover = Dict.empty
-  }
+update : Msg -> Model -> (Model -> model) -> (Msg -> msg) -> (model, Cmd msg)
+update message model merge msg =
+    let
+        (mdl, cmd) =
+            case message of
+                Hover _ _ ->
+                    Mdc.Enhance.Hover.update message model
+                Ripple _ ->
+                    Mdc.Enhance.Ripple.update message model
+    in
+        (merge mdl, Cmd.map msg cmd)

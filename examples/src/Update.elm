@@ -1,20 +1,23 @@
 module Update exposing (update)
 
-import Navigation
-import Messages exposing (Msg(..))
+import Messages exposing (Msg, Msg(..))
 import Model exposing (Model)
-import Routing exposing (Route(..), reverse)
 
+import Mdc exposing (update)
+import Mdc.Types
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         NavigateTo route ->
-            ( { model | route = route }, Cmd.none )
-
-        --( model, Navigation.newUrl <| reverse route )
-        OnHover mdc ->
-            ( { model | mdc = mdc }, Cmd.none )
+          ( { model | route = route }, Cmd.none )
+      Mdc mdc ->
+          Mdc.update mdc model.mdc (merge model) Mdc
 
         _ ->
-            ( model, Cmd.none )
+          ( model, Cmd.none )
+
+
+merge : Model -> Mdc.Types.Model -> Model
+merge model mdc =
+    { model | mdc = mdc }

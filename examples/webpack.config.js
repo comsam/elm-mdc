@@ -1,16 +1,38 @@
 var path = require("path");
+var TouchFilesPlugin = require('./webpack-touch-files-plugin');
+
+// List all files [as directory tree] in Node.js recursively in a synchronous fashion
+
+var walkSync = function(dir, filelist) {
+    var fs = fs || require('fs'),
+        files = fs.readdirSync(dir);
+    filelist = filelist || [];
+    files.forEach(function(file) {
+        if (fs.statSync(dir + '/' + file).isDirectory()) {
+            walkSync(dir + '/' + file, filelist);
+        }
+        else {
+            filelist.push(path.resolve(path.join(dir, file)));
+        }
+    });
+};
+
+var mdcFiles = ['./src/index.js'];
+walkSync("../src/", mdcFiles);
 
 module.exports = {
     entry: {
-        app: [
-            './src/index.js'
-        ]
+        app: mdcFiles
     },
 
     output: {
         path: path.resolve(__dirname + '/dist'),
         filename: '[name].js'
     },
+
+    plugins: [
+        new TouchFilesPlugin({ root: "./src/", touch: "./src", trigger: "/src/Mdc" })
+    ],
 
     module: {
         loaders: [
@@ -29,8 +51,7 @@ module.exports = {
             {
                 test: /\.elm$/,
                 exclude: [/elm-stuff/, /node_modules/],
-                //loader: 'elm-hot!elm-webpack'
-                loader: 'elm-webpack'
+                loader: 'elm-hot!elm-webpack?verbose=true&warn=true&debug=true'
             },
             {
                 test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -46,7 +67,10 @@ module.exports = {
     },
 
     devServer: {
-        inline: true,
-        stats: { colors: true }
+        stats: {
+            chunkModules: false,
+            assets: false,
+            colors: true
+        }
     }
 };

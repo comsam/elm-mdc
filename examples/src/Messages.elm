@@ -1,11 +1,12 @@
 module Messages exposing (..)
 
 import Routing exposing (Route)
-import Mdc exposing (Model)
+import Mdc.Types exposing (Msg)
 
 
 type Msg
-    = NavigateTo Route
-    | OpenClicked
-    | CloseClicked
-    | OnHover Mdc.Model
+  = NavigateTo Route
+  | OpenClicked
+  | CloseClicked
+
+  | Mdc Mdc.Types.Msg
