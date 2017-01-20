@@ -19,7 +19,7 @@ import Svg as Svg
 view : Model -> Html Msg
 view model =
     div
-        []
+        [ class "fab" ]
         [ h1 [] [ text "MDC FAB" ]
         , fab [ id "demo-absolute-fab" ]
             [ span [ class "mdc-fab__icon" ]
